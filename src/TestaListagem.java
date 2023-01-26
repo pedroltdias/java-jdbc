@@ -2,7 +2,8 @@ import java.sql.*;
 
 public class TestaListagem {
     public static void main(String args[]) throws SQLException {
-        Connection con = DriverManager.getConnection("jdbc:sqlite:db.sqlite");
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        Connection con = connectionFactory.recuperarConexao();
 
         Statement stm = con.createStatement();
         stm.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
