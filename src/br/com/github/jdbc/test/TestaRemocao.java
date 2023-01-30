@@ -1,4 +1,6 @@
-package br.com.github.jdbc;
+package br.com.github.jdbc.test;
+
+import br.com.github.jdbc.factory.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

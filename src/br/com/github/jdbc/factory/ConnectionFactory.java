@@ -1,4 +1,4 @@
-package br.com.github.jdbc;
+package br.com.github.jdbc.factory;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 

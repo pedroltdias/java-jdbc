@@ -1,4 +1,4 @@
-package br.com.github.jdbc;
+package br.com.github.jdbc.test;
 
 import java.sql.*;
 
