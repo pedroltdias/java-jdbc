@@ -1,3 +1,5 @@
+package br.com.github.jdbc;
+
 import java.sql.SQLException;
 
 public class TestaPoolConexoes {
