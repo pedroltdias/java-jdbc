@@ -5,6 +5,8 @@ import br.com.github.jdbc.model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoDAO {
 
@@ -31,5 +33,31 @@ public class ProdutoDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Produto> listarProduto(){
+        List<Produto> produtos = new ArrayList<>();
+
+        try(PreparedStatement pstm = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO")) {
+            pstm.execute();
+
+            try(ResultSet rst = pstm.getResultSet()) {
+                while(rst.next()) {
+                    Integer id = rst.getInt("ID");
+                    String nome = rst.getString("NOME");
+                    String descricao = rst.getString("DESCRICAO");
+
+                    Produto produto = new Produto(nome,descricao);
+                    produto.setId(id);
+
+                    produtos.add(produto);
+                }
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return produtos;
     }
 }
