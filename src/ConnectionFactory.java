@@ -12,6 +12,8 @@ public class ConnectionFactory {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         comboPooledDataSource.setJdbcUrl("jdbc:sqlite:db.sqlite");
 
+        comboPooledDataSource.setMaxPoolSize(15);
+
         this.dataSource = comboPooledDataSource;
     }
 
