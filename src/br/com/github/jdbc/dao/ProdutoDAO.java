@@ -35,7 +35,7 @@ public class ProdutoDAO {
         }
     }
 
-    public List<Produto> listarProduto(){
+    public List<Produto> listar(){
         List<Produto> produtos = new ArrayList<>();
 
         try(PreparedStatement pstm = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO")) {

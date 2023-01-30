@@ -13,7 +13,7 @@ public class TestaListagemComDAOeProduto {
         try(Connection connection = new ConnectionFactory().recuperarConexao()) {
             ProdutoDAO produtoDAO = new ProdutoDAO(connection);
 
-            List<Produto> produtos = produtoDAO.listarProduto();
+            List<Produto> produtos = produtoDAO.listar();
             for (Produto produto : produtos) {
                 System.out.println("[LISTANDO PRODUTO]... " + produto);
             }
