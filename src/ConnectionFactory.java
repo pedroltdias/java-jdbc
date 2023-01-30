@@ -1,9 +1,21 @@
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
+
+    public DataSource dataSource;
+
+    public ConnectionFactory(){
+        ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
+        comboPooledDataSource.setJdbcUrl("jdbc:sqlite:db.sqlite");
+
+        this.dataSource = comboPooledDataSource;
+    }
+
     public Connection recuperarConexao() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlite:db.sqlite");
+        return this.dataSource.getConnection();
     }
 }
