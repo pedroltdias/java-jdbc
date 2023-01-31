@@ -1,5 +1,6 @@
 package br.com.github.jdbc.dao;
 
+import br.com.github.jdbc.model.Categoria;
 import br.com.github.jdbc.model.Produto;
 
 import java.sql.Connection;
@@ -39,6 +40,33 @@ public class ProdutoDAO {
         List<Produto> produtos = new ArrayList<>();
 
         try(PreparedStatement pstm = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO")) {
+            pstm.execute();
+
+            try(ResultSet rst = pstm.getResultSet()) {
+                while(rst.next()) {
+                    Integer id = rst.getInt("ID");
+                    String nome = rst.getString("NOME");
+                    String descricao = rst.getString("DESCRICAO");
+
+                    Produto produto = new Produto(nome,descricao);
+                    produto.setId(id);
+
+                    produtos.add(produto);
+                }
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return produtos;
+    }
+
+    public List<Produto> buscar(Categoria categoria){
+        List<Produto> produtos = new ArrayList<>();
+
+        try(PreparedStatement pstm = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO WHERE CATEGORIA_ID = ?")) {
+            pstm.setInt(1, categoria.getId());
             pstm.execute();
 
             try(ResultSet rst = pstm.getResultSet()) {
